@@ -1,0 +1,106 @@
+{
+  "users": [
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "email": "JaneSmith@gmail.com",
+      "role": "user",
+      "password": "user@2"
+    },
+    {
+      "id": "3",
+      "name": "Alice Johnson",
+      "email": "AliceJohnson@gmail.com",
+      "role": "user",
+      "password": "user@3"
+    },
+    {
+      "id": "4",
+      "name": "Bob Brown",
+      "email": "BobBrown@gmail.com",
+      "role": "user",
+      "password": "user@4"
+    },
+    {
+      "id": "5",
+      "name": "Charlie Davis",
+      "email": "CharlieDavis@gmail.com",
+      "role": "user",
+      "password": "user@5"
+    },
+    {
+      "id": "6",
+      "name": "David Wilson",
+      "email": "DavidWilson@gmail.com",
+      "role": "user",
+      "password": "user@6"
+    },
+    {
+      "id": "7",
+      "name": "Eve Taylor",
+      "email": "EveTaylor@gmail.com",
+      "role": "user",
+      "password": "user@7"
+    },
+    {
+      "id": "8",
+      "name": "Frank Anderson",
+      "email": "FrankAnderson@gmail.com",
+      "role": "user",
+      "password": "user@8"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Laptop",
+      "price": 800
+    },
+    {
+      "id": "2",
+      "name": "Smartphone",
+      "price": 500
+    },
+    {
+      "id": "3",
+      "name": "Headphones",
+      "price": 100
+    },
+    {
+      "id": "4",
+      "name": "Keyboard",
+      "price": 60
+    },
+    {
+      "id": "5",
+      "name": "Mouse",
+      "price": 30
+    },
+    {
+      "id": "6",
+      "name": "Monitor",
+      "price": 200
+    },
+    {
+      "id": "7",
+      "name": "Printer",
+      "price": 150
+    },
+    {
+      "id": "8",
+      "name": "Tablet",
+      "price": 300
+    },
+    {
+      "id": "9",
+      "name": "Speakers",
+      "price": 90
+    },
+    {
+      "id": "10",
+      "name": "Webcam",
+      "price": 70
+    }
+  ],
+  "cart": []
+}
