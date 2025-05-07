@@ -1,21 +1,28 @@
 import React from "react";
 import ProductCard from "../ProductCard";
-
-const productsData = [
-  { id: 1, name: "Product A", description: "Description A", price: 10 },
-  { id: 2, name: "Product B", description: "Description B", price: 15 },
-  { id: 3, name: "Product C", description: "Description C", price: 20 },
-];
-
-const ProductCardPage = () => (
-  <div text-align="center" className="container">
-    <h2>Homepage</h2>
-    <div style={{ display: "flex", gap: "70px" }}>
-      {productsData.map((p) => (
-        <ProductCard key={p.id} product={p} />
-      ))}
+import { Link } from "react-router-dom";
+const ProductCardPage = () => {
+  const [cardData, setcardData] = React.useState([]);
+  React.useEffect(() => {
+    fetch("http://localhost:3001/products")
+      .then((res) => res.json())
+      .then((data) => setcardData(data));
+  }, []);
+  return (
+    <div text-align="center" className="container">
+      <h2>Homepage</h2>
+      <div style={{ margin: "20px" }}>
+        <Link className="add-to-cart" to={"/cart"}>
+          Go to cart
+        </Link>
+      </div>
+      <div style={{ display: "flex", gap: "70px" }}>
+        {cardData.map((p) => (
+          <ProductCard key={p.id} product={p} />
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default ProductCardPage;
