@@ -1,28 +1,77 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminLogin from "./component/AdminLogin";
 import AdminDashboard from "./component/AdminDashboard";
-// import ProductList from "./component/ProductList";
 import UserForm from "./component/UserForm";
-// import ProductCardPage from "./component/pages/ProductCardPage";
-import ProductDetail from "./component/pages/ProductDetail";
-import CartPage from "./component/pages/CartPage";
+import ProductDetail from "./pages/ProductDetail";
+import CartPage from "./pages/CartPage";
 import { CartProvider } from "./context/CartContext";
-import ProductCardPage from "./component/pages/ProductCardPage";
+import ProductCardPage from "./pages/ProductCardPage";
+import { ToastContainer } from "react-toastify";
+import UserCreateForm from "./component/UserCreateForm";
+import { AuthProvider } from "./context/AuthContext";
+import AuthGuard from "./component/AuthGuard";
+import Homelayout from "./layout/index";
 import "./App.css";
+import PixiGame from "./PixiFIles/PixiGame";
 function App() {
   return (
-    <BrowserRouter>
-      <CartProvider>
-        <Routes>
-          <Route path="/" element={<AdminLogin />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          {/* <Route path="/products" element={<ProductList />} /> */}
-          <Route path="/user-form" element={<UserForm />} />
-          <Route path="/products" element={<ProductCardPage />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/cart" element={<CartPage />} />
-        </Routes>
-      </CartProvider>
+    <BrowserRouter
+      future={{
+        v7_relativeSplatPath: true,
+        v7_startTransition: true,
+      }}
+    >
+      <ToastContainer />
+      <AuthProvider>
+        <CartProvider>
+          <Routes>
+            <Route path="/login" element={<AdminLogin />} />
+            <Route
+              path="/admin/dashboard"
+              element={
+                <AuthGuard>
+                  <Homelayout>
+                    <AdminDashboard />
+                  </Homelayout>
+                </AuthGuard>
+              }
+            />
+            <Route path="/user-form" element={<UserForm />} />
+            <Route
+              path="/"
+              element={
+                <AuthGuard>
+                  <Homelayout>
+                    <ProductCardPage />
+                  </Homelayout>
+                </AuthGuard>
+              }
+            />
+            <Route
+              path="/product/:_id"
+              element={
+                <AuthGuard>
+                  <Homelayout>
+                    <ProductDetail />
+                  </Homelayout>
+                </AuthGuard>
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <AuthGuard>
+                  <Homelayout>
+                    <CartPage />
+                  </Homelayout>
+                </AuthGuard>
+              }
+            />
+            <Route path="/create-user" element={<UserCreateForm />} />
+            <Route path="/pixi-game" element={<PixiGame />} />
+          </Routes>
+        </CartProvider>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

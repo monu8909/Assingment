@@ -1,40 +1,54 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css"; // import CSS
+import axios from "axios";
+import Apiconfigs from "../apiconfigs/Apiconfig";
+import { toast } from "react-toastify";
+import { useAuth } from "../context/AuthContext";
 
 export default function AdminLogin() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [users, setUsers] = useState([]);
-
   const navigate = useNavigate();
+  const { login, getProfile } = useAuth();
+  const from = localStorage.getItem("routing");
+  const [username, setUsername] = useState("YoyoHoney@mailinator.com");
+  const [password, setPassword] = useState("1234");
 
-  const handleLogin = () => {
-    const userCheck = users.find((userEmail) => userEmail?.email === username);
-    const userPasswordCheck = users.find(
-      (user_password) => user_password?.password === password
-    );
+  const handleLogin = async () => {
+    try {
+      if (username === "" && password === "") {
+        alert("Enter password and email.");
+        return false;
+      }
+      const response = await axios({
+        url: Apiconfigs?.login,
+        data: {
+          email: username,
+          password: password,
+        },
+        method: "POST",
+      });
 
-    console.log("userCheckuserPasswordCheck", userCheck, userPasswordCheck);
-
-    if (username === "admin" && password === "admin123") {
-      navigate("/admin/dashboard");
-    } else if (
-      userCheck !== undefined &&
-      userPasswordCheck !== undefined &&
-      userCheck.email == userPasswordCheck.email
-    ) {
-      navigate("/products");
-    } else {
-      alert("Invalid credentials");
+      if (response?.data?.response === 200) {
+        const token = response?.data?.userData?.token;
+        localStorage.setItem("token", token);
+        getProfile(token);
+        toast.success(response?.data?.message);
+        login(token);
+        navigate("/");
+      }
+    } catch (error) {
+      if (error?.status === 400) {
+        toast.error(error?.response?.data?.message);
+      }
+      console.log("error", error);
     }
   };
-
   useEffect(() => {
-    fetch("http://localhost:3001/users")
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
-  }, []);
+    const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+    if (isAuthenticated) {
+      navigate(from, { replace: true });
+    }
+  }, [from, navigate]);
   return (
     <div className="login-container">
       <div className="login-box">

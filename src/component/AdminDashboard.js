@@ -1,16 +1,10 @@
 import UserList from "./UserList";
 import SearchBar from "./SearchBar";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function AdminDashboard() {
   const [users, setUsers] = useState([]);
   const [query, setQuery] = useState("");
-
-  useEffect(() => {
-    fetch("http://localhost:3001/users")
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
-  }, []);
 
   const filteredUsers = users.filter(
     (user) =>

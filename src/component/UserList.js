@@ -5,9 +5,9 @@ export default function UserList({ users, setUsers }) {
   const [editingUserId, setEditingUserId] = useState(null);
 
   const deleteUser = (id) => {
-    fetch(`http://localhost:3001/users/${id}`, { method: "DELETE" }).then(() =>
-      setUsers(users.filter((user) => user.id !== id))
-    );
+    // fetch(`http://localhost:3001/users/${id}`, { method: "DELETE" }).then(() =>
+    //   setUsers(users.filter((user) => user.id !== id))
+    // );
   };
 
   return (
