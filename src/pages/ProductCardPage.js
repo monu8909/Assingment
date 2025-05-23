@@ -11,12 +11,11 @@ const ProductCardPage = () => {
     if (isAuthenticated) {
       Product_LikeList();
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, Product_LikeList]);
   const [_categoryId, setCategoryId] = useState("");
   const FilterProduct = (category_id) => {
     setCategoryId(category_id);
   };
-
   return (
     <div text-align="center" className="container">
       <div className="go-to-card">

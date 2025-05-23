@@ -11,5 +11,6 @@ const Apiconfigs = {
   dislike: `${apiURL}/dislike`,
   listProduct: `${apiURL}/product-list`,
   get_cart_list: `${apiURL}/get_cart_list`,
+  create_order: `${apiURL}/create-order`,
 };
 export default Apiconfigs;

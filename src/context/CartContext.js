@@ -42,7 +42,7 @@ export const CartProvider = ({ children }) => {
           quantity: quantity,
         },
       });
-      console.log("responseasas", response);
+      return response;
     } catch (error) {
       console.log("error", error);
     }
@@ -132,7 +132,6 @@ export const CartProvider = ({ children }) => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      console.log("sdsdsd", response?.data?.cart);
 
       if (response?.data?.response === 200) {
         setGetcartLis(response?.data?.cart);
