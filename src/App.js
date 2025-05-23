@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AdminLogin from "./component/AdminLogin";
+// import AdminLogin from "./component/AdminLogin";
 // import AdminDashboard from "./component/AdminDashboard";
 // import UserForm from "./component/UserForm";
 // import ProductDetail from "./pages/ProductDetail";
 // import CartPage from "./pages/CartPage";
 import { CartProvider } from "./context/CartContext";
-// import ProductCardPage from "./pages/ProductCardPage";
+import ProductCardPage from "./pages/ProductCardPage";
 import { ToastContainer } from "react-toastify";
 // import UserCreateForm from "./component/UserCreateForm";
 import { AuthProvider } from "./context/AuthContext";
@@ -25,7 +25,8 @@ function App() {
       <AuthProvider>
         <CartProvider>
           <Routes>
-            <Route path="/login" element={<AdminLogin />} />
+            <Route path="/" element={<ProductCardPage />} />
+            {/* <Route path="/login" element={<AdminLogin />} /> */}
             {/* <Route
               path="/admin/dashboard"
               element={
