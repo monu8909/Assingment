@@ -1,4 +1,4 @@
-export const baseURL = "http://192.168.0.249:8000/api/auth";
+export const baseURL = process.env.REACT_APP_BACKEND_URL;
 let apiURL = `${baseURL}`;
 const Apiconfigs = {
   register: `${apiURL}/register-user`,
