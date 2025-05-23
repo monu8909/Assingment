@@ -1,18 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminLogin from "./component/AdminLogin";
-import AdminDashboard from "./component/AdminDashboard";
-import UserForm from "./component/UserForm";
-import ProductDetail from "./pages/ProductDetail";
-import CartPage from "./pages/CartPage";
+// import AdminDashboard from "./component/AdminDashboard";
+// import UserForm from "./component/UserForm";
+// import ProductDetail from "./pages/ProductDetail";
+// import CartPage from "./pages/CartPage";
 import { CartProvider } from "./context/CartContext";
-import ProductCardPage from "./pages/ProductCardPage";
+// import ProductCardPage from "./pages/ProductCardPage";
 import { ToastContainer } from "react-toastify";
-import UserCreateForm from "./component/UserCreateForm";
+// import UserCreateForm from "./component/UserCreateForm";
 import { AuthProvider } from "./context/AuthContext";
-import AuthGuard from "./component/AuthGuard";
-import Homelayout from "./layout/index";
+// import AuthGuard from "./component/AuthGuard";
+// import Homelayout from "./layout/index";
 import "./App.css";
-import PixiGame from "./PixiFIles/PixiGame";
+// import PixiGame from "./PixiFIles/PixiGame";
 function App() {
   return (
     <BrowserRouter
@@ -26,7 +26,7 @@ function App() {
         <CartProvider>
           <Routes>
             <Route path="/login" element={<AdminLogin />} />
-            <Route
+            {/* <Route
               path="/admin/dashboard"
               element={
                 <AuthGuard>
@@ -68,7 +68,7 @@ function App() {
               }
             />
             <Route path="/create-user" element={<UserCreateForm />} />
-            <Route path="/pixi-game" element={<PixiGame />} />
+            <Route path="/pixi-game" element={<PixiGame />} /> */}
           </Routes>
         </CartProvider>
       </AuthProvider>
