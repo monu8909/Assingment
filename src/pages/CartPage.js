@@ -9,7 +9,7 @@ const CartPage = () => {
 
   useEffect(() => {
     getAddToCrt();
-  }, [getAddToCrt]);
+  }, []);
 
   let productPriceArray = _getcarlist?.map((data) => data?.price);
   let TotalPrice = productPriceArray?.reduce((a, b) => a + b, 0);

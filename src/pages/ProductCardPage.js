@@ -11,7 +11,7 @@ const ProductCardPage = () => {
     if (isAuthenticated) {
       Product_LikeList();
     }
-  }, [isAuthenticated, Product_LikeList]);
+  }, [isAuthenticated]);
   const [_categoryId, setCategoryId] = useState("");
   const FilterProduct = (category_id) => {
     setCategoryId(category_id);
