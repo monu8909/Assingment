@@ -16,7 +16,6 @@ const ProductCardPage = () => {
   const FilterProduct = (category_id) => {
     setCategoryId(category_id);
   };
-  console.log("_categoryId", _categoryId);
 
   return (
     <div text-align="center" className="container">

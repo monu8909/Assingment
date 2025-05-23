@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import axios from "axios";
 import Apiconfigs, { baseURL } from "../apiconfigs/Apiconfig";
 import { useAuth } from "../context/AuthContext";
@@ -6,7 +6,6 @@ import { useAuth } from "../context/AuthContext";
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const User_id = localStorage.getItem("token");
   const { isAuthenticated } = useAuth();
   const [likedIds, setLikedIds] = useState([]);
   const [cardData, setcardData] = React.useState([]);
