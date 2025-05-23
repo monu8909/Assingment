@@ -35,7 +35,7 @@ function App() {
                 </AuthGuard>
               }
             />
-            {/* <Route path="/login" element={<AdminLogin />} /> */}
+            <Route path="/login" element={<AdminLogin />} />
             {/* <Route
               path="/admin/dashboard"
               element={
