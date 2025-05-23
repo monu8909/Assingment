@@ -10,24 +10,29 @@ export const CartProvider = ({ children }) => {
   const [likedIds, setLikedIds] = useState([]);
   const [cardData, setcardData] = React.useState([]);
   const [_category, setCategory] = useState([]);
-  const [_getcarlist, setGetcartLis] = useState([]);
-  const Product_LikeList = async () => {
-    try {
-      const [productRes] = await Promise.all([
-        axios.get(Apiconfigs.listProduct, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }),
-      ]);
+  const [_checklike, setChekLike] = useState(false);
+  React.useEffect(() => {
+    const Product_LikeList = async () => {
+      try {
+        const [productRes] = await Promise.all([
+          axios.get(Apiconfigs.listProduct, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }),
+        ]);
 
-      if (productRes.data.response === 200) {
-        setLikedIds(productRes.data.likedProductIds); // save liked product IDs
+        if (productRes.data.response === 200) {
+          setLikedIds(productRes.data.likedProductIds); // save liked product IDs
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
-    } catch (error) {
-      console.error("Error fetching data:", error);
+    };
+    if (_checklike) {
+      Product_LikeList();
     }
-  };
+  }, [_checklike]);
 
   const addToCart = async (_id, quantity) => {
     try {
@@ -74,7 +79,7 @@ export const CartProvider = ({ children }) => {
       });
 
       if (response) {
-        Product_LikeList();
+        setChekLike(true);
       }
     } catch (error) {
       console.log(error);
@@ -92,7 +97,7 @@ export const CartProvider = ({ children }) => {
       });
 
       if (response) {
-        Product_LikeList();
+        setChekLike(true);
       }
     } catch (error) {
       console.log(error);
@@ -123,26 +128,7 @@ export const CartProvider = ({ children }) => {
       console.error("Error fetching data:", error);
     }
   };
-  const getAddToCrt = async () => {
-    try {
-      const response = await axios({
-        url: Apiconfigs.get_cart_list,
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
 
-      if (response?.data?.response === 200) {
-        setGetcartLis(response?.data?.cart);
-      }
-    } catch (error) {
-      if (error?.status === 404) {
-        setGetcartLis([]);
-      }
-      console.log("error", error);
-    }
-  };
   React.useEffect(() => {
     Product_Category_data();
   }, []);
@@ -157,10 +143,7 @@ export const CartProvider = ({ children }) => {
         likedIds,
         cardData,
         _category,
-        Product_LikeList,
         isAuthenticated,
-        getAddToCrt,
-        _getcarlist,
       }}
     >
       {children}

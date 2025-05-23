@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ProductCard from "../component/ProductCard";
 import { Link } from "react-router-dom";
 import { Row, Card, Col } from "react-bootstrap";
 import { useCart } from "../context/CartContext";
-import { useAuth } from "../context/AuthContext";
+// import { useAuth } from "../context/AuthContext";
 const ProductCardPage = () => {
-  const { likedIds, cardData, _category, Product_LikeList } = useCart();
-  const { isAuthenticated } = useAuth();
-  useEffect(() => {
-    if (isAuthenticated) {
-      Product_LikeList();
-    }
-  }, [isAuthenticated]);
+  const { likedIds, cardData, _category } = useCart();
+  // const { isAuthenticated } = useAuth();
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     Product_LikeList();
+  //   }
+  // }, [isAuthenticated]);
   const [_categoryId, setCategoryId] = useState("");
   const FilterProduct = (category_id) => {
     setCategoryId(category_id);

@@ -1,14 +1,35 @@
 import React, { useEffect } from "react";
-import { useCart } from "../context/CartContext";
 import AddToCartPage from "../component/AddToCartPage";
 import RazorpayPayment from "../component/RazorpayPayment";
 
 import { Link } from "react-router-dom";
+import axios from "axios";
+import Apiconfigs from "../apiconfigs/Apiconfig";
 const CartPage = () => {
-  const { getAddToCrt, _getcarlist } = useCart();
+  const [_getcarlist, setGetcartLis] = React.useState([]);
 
   useEffect(() => {
-    getAddToCrt();
+    const getAddToCart = async () => {
+      try {
+        const response = await axios({
+          url: Apiconfigs.get_cart_list,
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+
+        if (response?.data?.response === 200) {
+          setGetcartLis(response?.data?.cart);
+        }
+      } catch (error) {
+        if (error?.status === 404) {
+          setGetcartLis([]);
+        }
+        console.log("error", error);
+      }
+    };
+    getAddToCart();
   }, []);
 
   let productPriceArray = _getcarlist?.map((data) => data?.price);
@@ -31,12 +52,6 @@ const CartPage = () => {
                   _getcarlist?.map((data) => {
                     return <AddToCartPage data={data} key={data?._id} />;
                   })}
-
-                {/* <div className="ibox-content">
-                  <button className="btn btn-white">
-                    <i className="fa fa-arrow-left"></i> Continue shopping
-                  </button>
-                </div> */}
                 <div className="m-t-sm ">
                   <div className="btn-group">
                     <Link to={"/"} className="button-92">
