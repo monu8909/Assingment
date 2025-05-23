@@ -6,7 +6,7 @@ import Apiconfigs from "../apiconfigs/Apiconfig";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
 
-export default function AdminLogin() {
+const AdminLogin = () => {
   const navigate = useNavigate();
   const { login, getProfile } = useAuth();
   const from = localStorage.getItem("routing");
@@ -69,4 +69,5 @@ export default function AdminLogin() {
       </div>
     </div>
   );
-}
+};
+export default AdminLogin;
