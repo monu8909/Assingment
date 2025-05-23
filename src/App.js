@@ -9,8 +9,8 @@ import ProductCardPage from "./pages/ProductCardPage";
 import { ToastContainer } from "react-toastify";
 // import UserCreateForm from "./component/UserCreateForm";
 import { AuthProvider } from "./context/AuthContext";
-// import AuthGuard from "./component/AuthGuard";
-// import Homelayout from "./layout/index";
+import AuthGuard from "./component/AuthGuard";
+import Homelayout from "./layout/index";
 import "./App.css";
 // import PixiGame from "./PixiFIles/PixiGame";
 function App() {
@@ -25,7 +25,16 @@ function App() {
       <AuthProvider>
         <CartProvider>
           <Routes>
-            <Route path="/" element={<ProductCardPage />} />
+            <Route
+              path="/"
+              element={
+                <AuthGuard>
+                  <Homelayout>
+                    <ProductCardPage />
+                  </Homelayout>
+                </AuthGuard>
+              }
+            />
             {/* <Route path="/login" element={<AdminLogin />} /> */}
             {/* <Route
               path="/admin/dashboard"
